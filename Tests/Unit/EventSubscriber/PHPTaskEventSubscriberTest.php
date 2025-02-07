@@ -37,9 +37,6 @@ class PHPTaskEventSubscriberTest extends TestCase
      */
     private \Prophecy\Prophecy\ObjectProphecy $taskRepository;
 
-    /**
-     * @var PHPTaskEventSubscriber
-     */
     private \Sulu\Bundle\AutomationBundle\EventSubscriber\PHPTaskEventSubscriber $eventSubscriber;
 
     protected function setUp(): void

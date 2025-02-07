@@ -36,9 +36,6 @@ class DocumentPublishHandlerTest extends TestCase
      */
     private \Prophecy\Prophecy\ObjectProphecy $translator;
 
-    /**
-     * @var DocumentPublishHandler
-     */
     private \Sulu\Bundle\AutomationBundle\Handler\DocumentPublishHandler $publishHandler;
 
     protected function setUp(): void

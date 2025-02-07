@@ -31,7 +31,7 @@ class AutomationAdmin extends Admin
         return PageAdmin::getPriority() - 1;
     }
 
-    public function __construct(protected \Sulu\Bundle\AutomationBundle\Admin\View\AutomationViewBuilderFactoryInterface $automationViewBuilderFactory, protected \Sulu\Component\Security\Authorization\SecurityCheckerInterface $securityChecker)
+    public function __construct(protected AutomationViewBuilderFactoryInterface $automationViewBuilderFactory, protected SecurityCheckerInterface $securityChecker)
     {
     }
 

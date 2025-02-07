@@ -39,9 +39,6 @@ class PageTreeRouteUpdateHandlerTest extends TestCase
      */
     private \Prophecy\Prophecy\ObjectProphecy $entityManager;
 
-    /**
-     * @var PageTreeRouteUpdateHandler
-     */
     private \Sulu\Bundle\AutomationBundle\PageTree\PageTreeRouteUpdateHandler $handler;
 
     public function setUp(): void

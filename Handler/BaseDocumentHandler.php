@@ -22,7 +22,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 abstract class BaseDocumentHandler implements AutomationTaskHandlerInterface
 {
-    public function __construct(protected string $title, protected \Sulu\Component\DocumentManager\DocumentManagerInterface $documentManager)
+    public function __construct(protected string $title, protected DocumentManagerInterface $documentManager)
     {
     }
 

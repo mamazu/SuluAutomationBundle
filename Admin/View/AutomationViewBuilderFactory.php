@@ -19,7 +19,7 @@ use Sulu\Bundle\AutomationBundle\Entity\Task;
 
 class AutomationViewBuilderFactory implements AutomationViewBuilderFactoryInterface
 {
-    public function __construct(protected \Sulu\Bundle\AdminBundle\Admin\View\ViewBuilderFactoryInterface $viewBuilderFactory)
+    public function __construct(protected ViewBuilderFactoryInterface $viewBuilderFactory)
     {
     }
 

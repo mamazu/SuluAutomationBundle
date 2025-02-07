@@ -51,9 +51,6 @@ class TaskSchedulerTest extends TestCase
      */
     private \Prophecy\Prophecy\ObjectProphecy $taskScheduler;
 
-    /**
-     * @var TaskScheduler
-     */
     private \Sulu\Bundle\AutomationBundle\Tasks\Scheduler\TaskScheduler $taskEventListener;
 
     protected function setUp(): void

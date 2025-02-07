@@ -36,9 +36,6 @@ class DocumentUnpublishHandlerTest extends TestCase
      */
     private \Prophecy\Prophecy\ObjectProphecy $translator;
 
-    /**
-     * @var DocumentUnpublishHandler
-     */
     private \Sulu\Bundle\AutomationBundle\Handler\DocumentUnpublishHandler $unpublishHandler;
 
     protected function setUp(): void

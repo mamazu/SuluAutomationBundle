@@ -55,15 +55,15 @@ class TaskController extends AbstractRestController implements ClassResourceInte
     public function __construct(
         ViewHandlerInterface $viewHandler,
         TokenStorageInterface $tokenStorage,
-        protected \Sulu\Component\Rest\ListBuilder\Doctrine\DoctrineListBuilderFactoryInterface $doctrineListBuilderFactory,
-        protected \Task\Handler\TaskHandlerFactoryInterface $taskHandlerFactory,
-        protected \Task\Storage\TaskRepositoryInterface $taskRepository,
-        protected \Task\Storage\TaskExecutionRepositoryInterface $taskExecutionRepository,
-        protected \Sulu\Component\Rest\RestHelperInterface $restHelper,
-        protected \Sulu\Bundle\AutomationBundle\Tasks\Manager\TaskManagerInterface $taskManager,
-        protected \Doctrine\ORM\EntityManagerInterface $entityManager,
-        protected \JMS\Serializer\SerializerInterface $serializer,
-        protected \Sulu\Component\Rest\ListBuilder\Metadata\FieldDescriptorFactoryInterface $fieldDescriptorFactory,
+        protected DoctrineListBuilderFactoryInterface $doctrineListBuilderFactory,
+        protected TaskHandlerFactoryInterface $taskHandlerFactory,
+        protected TaskRepositoryInterface $taskRepository,
+        protected TaskExecutionRepositoryInterface $taskExecutionRepository,
+        protected RestHelperInterface $restHelper,
+        protected TaskManagerInterface $taskManager,
+        protected EntityManagerInterface $entityManager,
+        protected SerializerInterface $serializer,
+        protected FieldDescriptorFactoryInterface $fieldDescriptorFactory,
         protected AutomationTaskRepositoryInterface $automationTaskRepository
     ) {
         parent::__construct($viewHandler, $tokenStorage);
