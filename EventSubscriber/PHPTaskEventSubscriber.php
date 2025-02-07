@@ -23,20 +23,8 @@ use Task\Event\TaskEvent;
  */
 class PHPTaskEventSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
-
-    /**
-     * @var TaskRepositoryInterface
-     */
-    private $taskRepository;
-
-    public function __construct(RequestStack $requestStack, TaskRepositoryInterface $taskRepository)
+    public function __construct(private RequestStack $requestStack, private TaskRepositoryInterface $taskRepository)
     {
-        $this->requestStack = $requestStack;
-        $this->taskRepository = $taskRepository;
     }
 
     public static function getSubscribedEvents(): array

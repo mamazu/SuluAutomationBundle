@@ -27,29 +27,8 @@ use Task\Lock\LockingTaskHandlerInterface;
  */
 class PageTreeRouteUpdateHandler implements AutomationTaskHandlerInterface, LockingTaskHandlerInterface, RetryTaskHandlerInterface
 {
-    /**
-     * @var PageTreeUpdaterInterface
-     */
-    private $routeUpdater;
-
-    /**
-     * @var DocumentManagerInterface
-     */
-    private $documentManager;
-
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
-    public function __construct(
-        PageTreeUpdaterInterface $routeUpdater,
-        DocumentManagerInterface $documentManager,
-        EntityManagerInterface $entityManager
-    ) {
-        $this->routeUpdater = $routeUpdater;
-        $this->documentManager = $documentManager;
-        $this->entityManager = $entityManager;
+    public function __construct(private PageTreeUpdaterInterface $routeUpdater, private DocumentManagerInterface $documentManager, private EntityManagerInterface $entityManager)
+    {
     }
 
     public function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver

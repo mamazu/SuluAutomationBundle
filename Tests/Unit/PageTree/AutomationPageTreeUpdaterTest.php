@@ -79,15 +79,13 @@ class AutomationPageTreeUpdaterTest extends TestCase
         $task = $this->prophesize(TaskInterface::class);
         $this->taskManager->create(
             Argument::that(
-                function(TaskInterface $task) {
-                    return BasePageDocument::class === $task->getEntityClass()
-                        && '123-123-123' === $task->getEntityId()
-                        && 'de' === $task->getLocale()
-                        && PageTreeRouteUpdateHandler::class === $task->getHandlerClass()
-                        && $task->getSchedule() <= new \DateTime()
-                        && 'sulu.io' === $task->getHost()
-                        && 'http' === $task->getScheme();
-                }
+                fn(TaskInterface $task) => BasePageDocument::class === $task->getEntityClass()
+                    && '123-123-123' === $task->getEntityId()
+                    && 'de' === $task->getLocale()
+                    && PageTreeRouteUpdateHandler::class === $task->getHandlerClass()
+                    && $task->getSchedule() <= new \DateTime()
+                    && 'sulu.io' === $task->getHost()
+                    && 'http' === $task->getScheme()
             )
         )->shouldBeCalled()->willReturn($task->reveal());
 

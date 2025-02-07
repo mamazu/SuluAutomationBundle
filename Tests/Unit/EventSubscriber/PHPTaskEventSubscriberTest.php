@@ -75,11 +75,9 @@ class PHPTaskEventSubscriberTest extends TestCase
 
         $this->requestStack->push(
             Argument::that(
-                function(Request $request) use ($event) {
-                    return 'http' === $request->getScheme()
-                           && 'sulu.io' === $request->getHost()
-                           && $request->attributes->get('_task_id') === $event->getTask()->getUuid();
-                }
+                fn(Request $request) => 'http' === $request->getScheme()
+                       && 'sulu.io' === $request->getHost()
+                       && $request->attributes->get('_task_id') === $event->getTask()->getUuid()
             )
         )->shouldBeCalled();
 
@@ -97,11 +95,9 @@ class PHPTaskEventSubscriberTest extends TestCase
 
         $this->requestStack->push(
             Argument::that(
-                function(Request $request) use ($event) {
-                    return 'https' === $request->getScheme()
-                           && 'sulu.io' === $request->getHost()
-                           && $request->attributes->get('_task_id') === $event->getTask()->getUuid();
-                }
+                fn(Request $request) => 'https' === $request->getScheme()
+                       && 'sulu.io' === $request->getHost()
+                       && $request->attributes->get('_task_id') === $event->getTask()->getUuid()
             )
         )->shouldBeCalled();
 

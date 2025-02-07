@@ -27,29 +27,8 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  */
 class TaskManager implements TaskManagerInterface
 {
-    /**
-     * @var TaskRepositoryInterface
-     */
-    private $repository;
-
-    /**
-     * @var TaskSchedulerInterface
-     */
-    private $scheduler;
-
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
-
-    public function __construct(
-        TaskRepositoryInterface $repository,
-        TaskSchedulerInterface $scheduler,
-        EventDispatcherInterface $eventDispatcher
-    ) {
-        $this->repository = $repository;
-        $this->scheduler = $scheduler;
-        $this->eventDispatcher = $eventDispatcher;
+    public function __construct(private TaskRepositoryInterface $repository, private TaskSchedulerInterface $scheduler, private EventDispatcherInterface $eventDispatcher)
+    {
     }
 
     public function findById(string $id): TaskInterface

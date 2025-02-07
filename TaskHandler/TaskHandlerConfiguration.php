@@ -26,14 +26,8 @@ class TaskHandlerConfiguration
         return new self($title);
     }
 
-    /**
-     * @var string
-     */
-    private $title;
-
-    private function __construct(string $title)
+    private function __construct(private string $title)
     {
-        $this->title = $title;
     }
 
     public function getTitle(): string

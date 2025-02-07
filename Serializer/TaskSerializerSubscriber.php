@@ -26,22 +26,8 @@ use Task\Storage\TaskExecutionRepositoryInterface;
  */
 class TaskSerializerSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var TaskHandlerFactoryInterface
-     */
-    private $handlerFactory;
-
-    /**
-     * @var TaskExecutionRepositoryInterface
-     */
-    private $taskExecutionRepository;
-
-    public function __construct(
-        TaskHandlerFactoryInterface $handlerFactory,
-        TaskExecutionRepositoryInterface $taskExecutionRepository
-    ) {
-        $this->handlerFactory = $handlerFactory;
-        $this->taskExecutionRepository = $taskExecutionRepository;
+    public function __construct(private TaskHandlerFactoryInterface $handlerFactory, private TaskExecutionRepositoryInterface $taskExecutionRepository)
+    {
     }
 
     /**

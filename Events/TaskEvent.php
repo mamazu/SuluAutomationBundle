@@ -19,14 +19,8 @@ use Symfony\Contracts\EventDispatcher\Event;
  */
 abstract class TaskEvent extends Event
 {
-    /**
-     * @var TaskInterface
-     */
-    private $task;
-
-    public function __construct(TaskInterface $task)
+    public function __construct(private TaskInterface $task)
     {
-        $this->task = $task;
     }
 
     public function getTask(): TaskInterface

@@ -28,36 +28,8 @@ use Task\TaskStatus;
  */
 class TaskScheduler implements TaskSchedulerInterface
 {
-    /**
-     * @var TaskRepositoryInterface
-     */
-    private $taskRepository;
-
-    /**
-     * @var TaskExecutionRepositoryInterface
-     */
-    private $taskExecutionRepository;
-
-    /**
-     * @var TaskHandlerFactoryInterface
-     */
-    private $taskHandlerFactory;
-
-    /**
-     * @var PHPTaskSchedulerInterface
-     */
-    private $taskScheduler;
-
-    public function __construct(
-        TaskRepositoryInterface $phpTaskRepository,
-        TaskExecutionRepositoryInterface $phpTaskExecutionRepository,
-        TaskHandlerFactoryInterface $taskHandlerFactory,
-        PHPTaskSchedulerInterface $taskScheduler
-    ) {
-        $this->taskRepository = $phpTaskRepository;
-        $this->taskExecutionRepository = $phpTaskExecutionRepository;
-        $this->taskHandlerFactory = $taskHandlerFactory;
-        $this->taskScheduler = $taskScheduler;
+    public function __construct(private TaskRepositoryInterface $taskRepository, private TaskExecutionRepositoryInterface $taskExecutionRepository, private TaskHandlerFactoryInterface $taskHandlerFactory, private PHPTaskSchedulerInterface $taskScheduler)
+    {
     }
 
     public function schedule(TaskInterface $task): void

@@ -108,9 +108,7 @@ class TaskManagerTest extends TestCase
     {
         $this->eventDispatcher->dispatch(
             Argument::that(
-                function(TaskEvent $event) use ($task) {
-                    return $task == $event->getTask();
-                }
+                fn(TaskEvent $event) => $task == $event->getTask()
             ),
             $eventName
         )->willReturnArgument(0);

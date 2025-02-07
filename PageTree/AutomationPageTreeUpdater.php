@@ -23,29 +23,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
  */
 class AutomationPageTreeUpdater implements PageTreeUpdaterInterface
 {
-    /**
-     * @var TaskManagerInterface
-     */
-    private $taskManager;
-
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
-
-    public function __construct(
-        TaskManagerInterface $taskManager,
-        EntityManagerInterface $entityManager,
-        RequestStack $requestStack
-    ) {
-        $this->taskManager = $taskManager;
-        $this->entityManager = $entityManager;
-        $this->requestStack = $requestStack;
+    public function __construct(private TaskManagerInterface $taskManager, private EntityManagerInterface $entityManager, private RequestStack $requestStack)
+    {
     }
 
     public function update(BasePageDocument $document): void
