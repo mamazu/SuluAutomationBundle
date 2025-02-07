@@ -37,7 +37,7 @@ class SecondHandler implements AutomationTaskHandlerInterface
         return TaskHandlerConfiguration::create(self::TITLE);
     }
 
-    public function handle($workload)
+    public function handle($workload): void
     {
         // do nothing
     }

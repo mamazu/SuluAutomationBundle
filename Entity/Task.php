@@ -23,50 +23,23 @@ class Task implements TaskInterface
 
     public const RESOURCE_KEY = 'tasks';
 
-    /**
-     * @var string
-     */
-    private $id;
+    private ?string $id = null;
 
-    /**
-     * @var string
-     */
-    private $handlerClass;
+    private ?string $handlerClass = null;
 
-    /**
-     * @var \DateTime
-     */
-    private $schedule;
+    private ?\DateTime $schedule = null;
 
-    /**
-     * @var string
-     */
-    private $locale;
+    private ?string $locale = null;
 
-    /**
-     * @var string
-     */
-    private $entityClass;
+    private ?string $entityClass = null;
 
-    /**
-     * @var string
-     */
-    private $entityId;
+    private ?string $entityId = null;
 
-    /**
-     * @var string|null
-     */
-    private $taskId;
+    private ?string $taskId = null;
 
-    /**
-     * @var string
-     */
-    private $host;
+    private ?string $host = null;
 
-    /**
-     * @var string
-     */
-    private $scheme;
+    private ?string $scheme = null;
 
     public function getId(): string
     {

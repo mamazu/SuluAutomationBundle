@@ -30,22 +30,22 @@ class TaskManagerTest extends TestCase
     /**
      * @var TaskRepositoryInterface
      */
-    private $taskRepository;
+    private \Prophecy\Prophecy\ObjectProphecy $taskRepository;
 
     /**
      * @var EventDispatcherInterface
      */
-    private $eventDispatcher;
+    private \Prophecy\Prophecy\ObjectProphecy $eventDispatcher;
 
     /**
      * @var TaskSchedulerInterface
      */
-    private $taskScheduler;
+    private \Prophecy\Prophecy\ObjectProphecy $taskScheduler;
 
     /**
      * @var TaskManagerInterface
      */
-    private $taskManager;
+    private \Sulu\Bundle\AutomationBundle\Tasks\Manager\TaskManager $taskManager;
 
     protected function setUp(): void
     {
@@ -60,7 +60,7 @@ class TaskManagerTest extends TestCase
         );
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $task = $this->prophesize(TaskInterface::class);
         $task->setId(Argument::type('string'))->shouldBeCalled();
@@ -72,7 +72,7 @@ class TaskManagerTest extends TestCase
         $this->taskManager->create($task->reveal());
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $task = $this->prophesize(TaskInterface::class);
         $this->taskScheduler->reschedule($task->reveal())->shouldBeCalled();
@@ -82,7 +82,7 @@ class TaskManagerTest extends TestCase
         $this->taskManager->update($task->reveal());
     }
 
-    public function testRemove()
+    public function testRemove(): void
     {
         $id = 1;
         $task = $this->prophesize(TaskInterface::class);
@@ -95,7 +95,7 @@ class TaskManagerTest extends TestCase
         $this->taskManager->remove($id);
     }
 
-    public function testFindById()
+    public function testFindById(): void
     {
         $id = 1;
         $task = $this->prophesize(TaskInterface::class);
@@ -104,11 +104,11 @@ class TaskManagerTest extends TestCase
         $this->assertEquals($task->reveal(), $this->taskManager->findById($id));
     }
 
-    private function assertEventDispatched($eventName, $task)
+    private function assertEventDispatched(string $eventName, $task): void
     {
         $this->eventDispatcher->dispatch(
             Argument::that(
-                fn(TaskEvent $event) => $task == $event->getTask()
+                fn(TaskEvent $event): bool => $task == $event->getTask()
             ),
             $eventName
         )->willReturnArgument(0);

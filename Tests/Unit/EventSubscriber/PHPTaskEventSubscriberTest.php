@@ -30,17 +30,17 @@ class PHPTaskEventSubscriberTest extends TestCase
     /**
      * @var RequestStack
      */
-    private $requestStack;
+    private \Prophecy\Prophecy\ObjectProphecy $requestStack;
 
     /**
      * @var TaskRepositoryInterface
      */
-    private $taskRepository;
+    private \Prophecy\Prophecy\ObjectProphecy $taskRepository;
 
     /**
      * @var PHPTaskEventSubscriber
      */
-    private $eventSubscriber;
+    private \Sulu\Bundle\AutomationBundle\EventSubscriber\PHPTaskEventSubscriber $eventSubscriber;
 
     protected function setUp(): void
     {
@@ -52,7 +52,7 @@ class PHPTaskEventSubscriberTest extends TestCase
         );
     }
 
-    public function testGetSubscribedEvents()
+    public function testGetSubscribedEvents(): void
     {
         $eventNames = [Events::TASK_BEFORE, Events::TASK_AFTER];
         foreach ($this->eventSubscriber->getSubscribedEvents() as $eventName => $functions) {
@@ -64,7 +64,7 @@ class PHPTaskEventSubscriberTest extends TestCase
         }
     }
 
-    public function testPushRequest()
+    public function testPushRequest(): void
     {
         $event = $this->createEvent();
 
@@ -75,7 +75,7 @@ class PHPTaskEventSubscriberTest extends TestCase
 
         $this->requestStack->push(
             Argument::that(
-                fn(Request $request) => 'http' === $request->getScheme()
+                fn(Request $request): bool => 'http' === $request->getScheme()
                        && 'sulu.io' === $request->getHost()
                        && $request->attributes->get('_task_id') === $event->getTask()->getUuid()
             )
@@ -84,7 +84,7 @@ class PHPTaskEventSubscriberTest extends TestCase
         $this->eventSubscriber->pushRequest($event);
     }
 
-    public function testPushRequestHttps()
+    public function testPushRequestHttps(): void
     {
         $event = $this->createEvent();
 
@@ -95,7 +95,7 @@ class PHPTaskEventSubscriberTest extends TestCase
 
         $this->requestStack->push(
             Argument::that(
-                fn(Request $request) => 'https' === $request->getScheme()
+                fn(Request $request): bool => 'https' === $request->getScheme()
                        && 'sulu.io' === $request->getHost()
                        && $request->attributes->get('_task_id') === $event->getTask()->getUuid()
             )
@@ -104,7 +104,7 @@ class PHPTaskEventSubscriberTest extends TestCase
         $this->eventSubscriber->pushRequest($event);
     }
 
-    public function testPushRequestNotManaged()
+    public function testPushRequestNotManaged(): void
     {
         $event = $this->createEvent();
 
@@ -115,7 +115,7 @@ class PHPTaskEventSubscriberTest extends TestCase
         $this->eventSubscriber->pushRequest($event);
     }
 
-    public function testPopRequest()
+    public function testPopRequest(): void
     {
         $event = $this->createEvent();
 
@@ -127,7 +127,7 @@ class PHPTaskEventSubscriberTest extends TestCase
         $this->eventSubscriber->popRequest($event);
     }
 
-    public function testPopRequestNoTaskId()
+    public function testPopRequestNoTaskId(): void
     {
         $event = $this->createEvent();
 

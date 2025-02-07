@@ -31,22 +31,8 @@ class AutomationAdmin extends Admin
         return PageAdmin::getPriority() - 1;
     }
 
-    /**
-     * @var AutomationViewBuilderFactoryInterface
-     */
-    protected $automationViewBuilderFactory;
-
-    /**
-     * @var SecurityCheckerInterface
-     */
-    protected $securityChecker;
-
-    public function __construct(
-        AutomationViewBuilderFactoryInterface $automationViewBuilderFactory,
-        SecurityCheckerInterface $securityChecker
-    ) {
-        $this->automationViewBuilderFactory = $automationViewBuilderFactory;
-        $this->securityChecker = $securityChecker;
+    public function __construct(protected \Sulu\Bundle\AutomationBundle\Admin\View\AutomationViewBuilderFactoryInterface $automationViewBuilderFactory, protected \Sulu\Component\Security\Authorization\SecurityCheckerInterface $securityChecker)
+    {
     }
 
     public function configureViews(ViewCollection $viewCollection): void

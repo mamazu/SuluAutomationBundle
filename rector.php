@@ -22,5 +22,5 @@ return RectorConfig::configure()
     ])
     // uncomment to reach your current PHP version
     ->withPhpSets()
-    ->withTypeCoverageLevel(0)
+    ->withTypeCoverageLevel(PHP_INT_MAX)
     ;

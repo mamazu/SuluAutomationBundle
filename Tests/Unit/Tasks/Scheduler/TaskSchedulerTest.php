@@ -34,27 +34,27 @@ class TaskSchedulerTest extends TestCase
     /**
      * @var TaskRepositoryInterface
      */
-    private $taskRepository;
+    private \Prophecy\Prophecy\ObjectProphecy $taskRepository;
 
     /**
      * @var TaskExecutionRepositoryInterface
      */
-    private $taskExecutionRepository;
+    private \Prophecy\Prophecy\ObjectProphecy $taskExecutionRepository;
 
     /**
      * @var TaskHandlerFactoryInterface
      */
-    private $taskHandlerFactory;
+    private \Prophecy\Prophecy\ObjectProphecy $taskHandlerFactory;
 
     /**
      * @var TaskSchedulerInterface
      */
-    private $taskScheduler;
+    private \Prophecy\Prophecy\ObjectProphecy $taskScheduler;
 
     /**
      * @var TaskScheduler
      */
-    private $taskEventListener;
+    private \Sulu\Bundle\AutomationBundle\Tasks\Scheduler\TaskScheduler $taskEventListener;
 
     protected function setUp(): void
     {
@@ -71,7 +71,7 @@ class TaskSchedulerTest extends TestCase
         );
     }
 
-    public function testSchedule()
+    public function testSchedule(): void
     {
         $task = $this->prophesize(TaskInterface::class);
 
@@ -81,7 +81,7 @@ class TaskSchedulerTest extends TestCase
         $this->taskEventListener->schedule($task->reveal());
     }
 
-    public function testReschedule()
+    public function testReschedule(): void
     {
         $task = $this->prophesize(TaskInterface::class);
 
@@ -104,7 +104,7 @@ class TaskSchedulerTest extends TestCase
         $this->taskEventListener->reschedule($task->reveal());
     }
 
-    public function testRemove()
+    public function testRemove(): void
     {
         $task = $this->prophesize(TaskInterface::class);
 
@@ -116,7 +116,7 @@ class TaskSchedulerTest extends TestCase
         $this->taskEventListener->remove($task->reveal());
     }
 
-    private function prepareCreateWorkload($task, $entityClass = '\TestClass', $entityId = 1, $locale = 'de')
+    private function prepareCreateWorkload(\Prophecy\Prophecy\ObjectProphecy $task, $entityClass = '\TestClass', $entityId = 1, $locale = 'de'): void
     {
         $handler = $this->prophesize(AutomationTaskHandlerInterface::class);
 
@@ -131,7 +131,7 @@ class TaskSchedulerTest extends TestCase
             ->willReturnArgument(0);
     }
 
-    private function prepareScheduleTask($task, $uuid = '123-123-123', $schedule = '+1 day')
+    private function prepareScheduleTask(\Prophecy\Prophecy\ObjectProphecy $task, $uuid = '123-123-123', $schedule = '+1 day'): void
     {
         $date = new \DateTime($schedule);
 

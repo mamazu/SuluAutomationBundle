@@ -19,10 +19,7 @@ use Task\Handler\TaskHandlerInterface;
  */
 class TaskHandlerNotSupportedException extends \Exception
 {
-    /**
-     * @var TaskHandlerInterface
-     */
-    private $taskHandler;
+    private \Task\Handler\TaskHandlerInterface $taskHandler;
 
     public function __construct(TaskHandlerInterface $taskHandler, private TaskInterface $task)
     {

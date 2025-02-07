@@ -51,7 +51,7 @@ class PageTreeRouteUpdateHandler implements AutomationTaskHandlerInterface, Lock
     /**
      * @param array{id: string, locale: string} $workload
      */
-    public function handle($workload)
+    public function handle($workload): void
     {
         $this->entityManager->beginTransaction();
 

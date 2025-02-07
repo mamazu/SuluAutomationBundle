@@ -33,7 +33,7 @@ class TaskControllerTest extends SuluTestCase
         $this->purgeDatabase();
     }
 
-    public function testCGet()
+    public function testCGet(): void
     {
         $postData = [
             $this->testPost(),
@@ -63,7 +63,7 @@ class TaskControllerTest extends SuluTestCase
         }
     }
 
-    public function testCGetWithIds()
+    public function testCGetWithIds(): void
     {
         $postData = [
             $this->testPost(),
@@ -86,7 +86,7 @@ class TaskControllerTest extends SuluTestCase
         }
     }
 
-    public function testCGetWithLocales()
+    public function testCGetWithLocales(): void
     {
         $postData = [
             $this->testPost(FirstHandler::class, '+1 day', 'ThisClass', 1, 'de'),
@@ -117,7 +117,7 @@ class TaskControllerTest extends SuluTestCase
         }
     }
 
-    public function testCGetWithEntity()
+    public function testCGetWithEntity(): void
     {
         $postData = [
             $this->testPost(FirstHandler::class, '+1 day', 'ThisClass', 1),
@@ -136,7 +136,7 @@ class TaskControllerTest extends SuluTestCase
         $this->assertEquals($postData[0]['id'], $embedded[0]['id']);
     }
 
-    public function testCGetWithFutureSchedule()
+    public function testCGetWithFutureSchedule(): void
     {
         $postData = [
             $this->testPost(FirstHandler::class, '+1 day', 'ThisClass', 1),
@@ -167,7 +167,7 @@ class TaskControllerTest extends SuluTestCase
         }
     }
 
-    public function testCGetWithPastSchedule()
+    public function testCGetWithPastSchedule(): void
     {
         $postData = [
             $this->testPost(FirstHandler::class, '-1 day', 'ThisClass', 1),
@@ -198,7 +198,7 @@ class TaskControllerTest extends SuluTestCase
         }
     }
 
-    public function testCGetWithHandlerClass()
+    public function testCGetWithHandlerClass(): void
     {
         $postData = [
             $this->testPost(FirstHandler::class),
@@ -303,7 +303,7 @@ class TaskControllerTest extends SuluTestCase
         $schedule = '+2 day',
         $entityClass = 'ThisClass',
         $locale = 'de'
-    ) {
+    ): void {
         $postData = $this->testPost();
 
         $date = new \DateTime($schedule);
@@ -337,7 +337,7 @@ class TaskControllerTest extends SuluTestCase
         $this->assertNotNull($task->getTaskId());
     }
 
-    public function testGet()
+    public function testGet(): void
     {
         $postData = $this->testPost();
 
@@ -352,7 +352,7 @@ class TaskControllerTest extends SuluTestCase
         $this->assertEquals($postData['locale'], $responseData['locale']);
     }
 
-    public function testGetCount()
+    public function testGetCount(): void
     {
         $this->testPost(FirstHandler::class, '+1 day', 'ThisClass', 1, 'de');
         $this->testPost(SecondHandler::class, '+1 day', 'ThisClass', 1, 'de');
@@ -373,7 +373,7 @@ class TaskControllerTest extends SuluTestCase
         $this->assertEquals(3, $responseData['count']);
     }
 
-    public function testGetWithoutCreator()
+    public function testGetWithoutCreator(): void
     {
         $task = new Task();
         $task->setEntityClass(Task::class);
@@ -399,7 +399,7 @@ class TaskControllerTest extends SuluTestCase
         $this->assertEquals('', $responseData['changer']);
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $postData = $this->testPost();
 
@@ -410,7 +410,7 @@ class TaskControllerTest extends SuluTestCase
         $this->assertHttpStatusCode(404, $this->client->getResponse());
     }
 
-    public function testCDelete()
+    public function testCDelete(): void
     {
         $postData = [
             $this->testPost(),

@@ -18,10 +18,7 @@ use Sulu\Bundle\AutomationBundle\Tasks\Model\TaskInterface;
  */
 class TaskExpiredException extends \Exception
 {
-    /**
-     * @var TaskInterface
-     */
-    private $task;
+    private \Sulu\Bundle\AutomationBundle\Tasks\Model\TaskInterface $task;
 
     public function __construct(TaskInterface $task)
     {

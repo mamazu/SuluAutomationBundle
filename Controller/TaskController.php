@@ -47,86 +47,26 @@ class TaskController extends AbstractRestController implements ClassResourceInte
     /**
      * @var string[]
      */
-    private static $scheduleComparators = [
+    private static array $scheduleComparators = [
         'future' => ListBuilderInterface::WHERE_COMPARATOR_GREATER_THAN,
         'past' => ListBuilderInterface::WHERE_COMPARATOR_LESS,
     ];
 
-    /**
-     * @var DoctrineListBuilderFactoryInterface
-     */
-    protected $doctrineListBuilderFactory;
-
-    /**
-     * @var TaskHandlerFactoryInterface
-     */
-    protected $taskHandlerFactory;
-
-    /**
-     * @var TaskRepositoryInterface
-     */
-    protected $taskRepository;
-
-    /**
-     * @var TaskExecutionRepositoryInterface
-     */
-    protected $taskExecutionRepository;
-
-    /**
-     * @var RestHelperInterface
-     */
-    protected $restHelper;
-
-    /**
-     * @var TaskManagerInterface
-     */
-    protected $taskManager;
-
-    /**
-     * @var AutomationTaskRepositoryInterface
-     */
-    protected $automationTaskRepository;
-
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $entityManager;
-
-    /**
-     * @var SerializerInterface
-     */
-    protected $serializer;
-
-    /**
-     * @var FieldDescriptorFactoryInterface
-     */
-    protected $fieldDescriptorFactory;
-
     public function __construct(
         ViewHandlerInterface $viewHandler,
         TokenStorageInterface $tokenStorage,
-        DoctrineListBuilderFactoryInterface $doctrineListBuilderFactory,
-        TaskHandlerFactoryInterface $taskHandlerFactory,
-        TaskRepositoryInterface $taskRepository,
-        TaskExecutionRepositoryInterface $taskExecutionRepository,
-        RestHelperInterface $doctrineRestHelper,
-        TaskManagerInterface $taskManager,
-        EntityManagerInterface $entityManager,
-        SerializerInterface $serializer,
-        FieldDescriptorFactoryInterface $fieldDescriptorFactory,
-        AutomationTaskRepositoryInterface $automationTaskRepository
+        protected \Sulu\Component\Rest\ListBuilder\Doctrine\DoctrineListBuilderFactoryInterface $doctrineListBuilderFactory,
+        protected \Task\Handler\TaskHandlerFactoryInterface $taskHandlerFactory,
+        protected \Task\Storage\TaskRepositoryInterface $taskRepository,
+        protected \Task\Storage\TaskExecutionRepositoryInterface $taskExecutionRepository,
+        protected \Sulu\Component\Rest\RestHelperInterface $restHelper,
+        protected \Sulu\Bundle\AutomationBundle\Tasks\Manager\TaskManagerInterface $taskManager,
+        protected \Doctrine\ORM\EntityManagerInterface $entityManager,
+        protected \JMS\Serializer\SerializerInterface $serializer,
+        protected \Sulu\Component\Rest\ListBuilder\Metadata\FieldDescriptorFactoryInterface $fieldDescriptorFactory,
+        protected AutomationTaskRepositoryInterface $automationTaskRepository
     ) {
         parent::__construct($viewHandler, $tokenStorage);
-        $this->doctrineListBuilderFactory = $doctrineListBuilderFactory;
-        $this->taskHandlerFactory = $taskHandlerFactory;
-        $this->taskRepository = $taskRepository;
-        $this->taskExecutionRepository = $taskExecutionRepository;
-        $this->restHelper = $doctrineRestHelper;
-        $this->taskManager = $taskManager;
-        $this->entityManager = $entityManager;
-        $this->serializer = $serializer;
-        $this->fieldDescriptorFactory = $fieldDescriptorFactory;
-        $this->automationTaskRepository = $automationTaskRepository;
     }
 
     /**

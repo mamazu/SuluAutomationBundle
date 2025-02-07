@@ -22,23 +22,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 abstract class BaseDocumentHandler implements AutomationTaskHandlerInterface
 {
-    /**
-     * @var string
-     */
-    protected $title;
-
-    /**
-     * @var DocumentManagerInterface
-     */
-    protected $documentManager;
-
-    public function __construct(string $title, DocumentManagerInterface $documentManager)
+    public function __construct(protected string $title, protected \Sulu\Component\DocumentManager\DocumentManagerInterface $documentManager)
     {
-        $this->title = $title;
-        $this->documentManager = $documentManager;
     }
 
-    public function handle($workload)
+    public function handle($workload): void
     {
         if (\is_array($workload)) {
             /** @var WorkflowStageBehavior $document */

@@ -19,15 +19,8 @@ use Sulu\Bundle\AutomationBundle\Entity\Task;
 
 class AutomationViewBuilderFactory implements AutomationViewBuilderFactoryInterface
 {
-    /**
-     * @var ViewBuilderFactoryInterface
-     */
-    protected $viewBuilderFactory;
-
-    public function __construct(
-        ViewBuilderFactoryInterface $viewBuilderFactory
-    ) {
-        $this->viewBuilderFactory = $viewBuilderFactory;
+    public function __construct(protected \Sulu\Bundle\AdminBundle\Admin\View\ViewBuilderFactoryInterface $viewBuilderFactory)
+    {
     }
 
     public function createTaskListViewBuilder(string $name, string $path, string $entityClass): FormOverlayListViewBuilderInterface

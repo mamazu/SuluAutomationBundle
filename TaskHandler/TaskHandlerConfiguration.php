@@ -21,7 +21,7 @@ class TaskHandlerConfiguration
      *
      * @return TaskHandlerConfiguration
      */
-    public static function create(string $title)
+    public static function create(string $title): self
     {
         return new self($title);
     }

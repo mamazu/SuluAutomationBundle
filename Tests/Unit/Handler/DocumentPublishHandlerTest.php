@@ -29,17 +29,17 @@ class DocumentPublishHandlerTest extends TestCase
     /**
      * @var DocumentManagerInterface
      */
-    private $documentManager;
+    private \Prophecy\Prophecy\ObjectProphecy $documentManager;
 
     /**
      * @var TranslatorInterface
      */
-    private $translator;
+    private \Prophecy\Prophecy\ObjectProphecy $translator;
 
     /**
      * @var DocumentPublishHandler
      */
-    private $publishHandler;
+    private \Sulu\Bundle\AutomationBundle\Handler\DocumentPublishHandler $publishHandler;
 
     protected function setUp(): void
     {
@@ -49,7 +49,7 @@ class DocumentPublishHandlerTest extends TestCase
         $this->publishHandler = new DocumentPublishHandler($this->documentManager->reveal(), $this->translator->reveal());
     }
 
-    public function testHandle($id = '123-123-123', $locale = 'de')
+    public function testHandle($id = '123-123-123', $locale = 'de'): void
     {
         $this->documentManager->find($id, $locale)->willReturn($this->prophesize(WorkflowStageBehavior::class));
         $this->documentManager->publish(Argument::type(WorkflowStageBehavior::class), $locale)->shouldBeCalled();
@@ -58,7 +58,7 @@ class DocumentPublishHandlerTest extends TestCase
         $this->publishHandler->handle(['id' => $id, 'locale' => $locale]);
     }
 
-    public function testConfigureOptionsResolver()
+    public function testConfigureOptionsResolver(): void
     {
         $optionsResolver = $this->prophesize(OptionsResolver::class);
 
@@ -69,7 +69,7 @@ class DocumentPublishHandlerTest extends TestCase
         $this->publishHandler->configureOptionsResolver($optionsResolver->reveal());
     }
 
-    public function testSupports()
+    public function testSupports(): void
     {
         $this->assertTrue($this->publishHandler->supports(PageDocument::class));
         $this->assertTrue($this->publishHandler->supports(HomeDocument::class));

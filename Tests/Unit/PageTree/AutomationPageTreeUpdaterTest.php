@@ -29,27 +29,27 @@ class AutomationPageTreeUpdaterTest extends TestCase
     /**
      * @var TaskManagerInterface
      */
-    private $taskManager;
+    private \Prophecy\Prophecy\ObjectProphecy $taskManager;
 
     /**
      * @var EntityManagerInterface
      */
-    private $entityManager;
+    private \Prophecy\Prophecy\ObjectProphecy $entityManager;
 
     /**
      * @var RequestStack
      */
-    private $requestStack;
+    private \Prophecy\Prophecy\ObjectProphecy $requestStack;
 
     /**
      * @var PageTreeUpdaterInterface
      */
-    private $updater;
+    private \Sulu\Bundle\AutomationBundle\PageTree\AutomationPageTreeUpdater $updater;
 
     /**
      * @var Request
      */
-    private $request;
+    private \Prophecy\Prophecy\ObjectProphecy $request;
 
     public function setUp(): void
     {
@@ -70,7 +70,7 @@ class AutomationPageTreeUpdaterTest extends TestCase
         $this->requestStack->getCurrentRequest()->willReturn($this->request->reveal());
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $document = $this->prophesize(BasePageDocument::class);
         $document->getUuid()->willReturn('123-123-123');
@@ -79,7 +79,7 @@ class AutomationPageTreeUpdaterTest extends TestCase
         $task = $this->prophesize(TaskInterface::class);
         $this->taskManager->create(
             Argument::that(
-                fn(TaskInterface $task) => BasePageDocument::class === $task->getEntityClass()
+                fn(TaskInterface $task): bool => BasePageDocument::class === $task->getEntityClass()
                     && '123-123-123' === $task->getEntityId()
                     && 'de' === $task->getLocale()
                     && PageTreeRouteUpdateHandler::class === $task->getHandlerClass()

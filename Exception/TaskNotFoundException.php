@@ -16,10 +16,7 @@ namespace Sulu\Bundle\AutomationBundle\Exception;
  */
 class TaskNotFoundException extends \Exception
 {
-    /**
-     * @var string
-     */
-    private $id;
+    private string $id;
 
     public function __construct(string $id)
     {

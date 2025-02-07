@@ -27,22 +27,22 @@ class PageTreeRouteUpdateHandlerTest extends TestCase
     /**
      * @var PageTreeUpdaterInterface
      */
-    private $routeUpdater;
+    private \Prophecy\Prophecy\ObjectProphecy $routeUpdater;
 
     /**
      * @var DocumentManagerInterface
      */
-    private $documentManager;
+    private \Prophecy\Prophecy\ObjectProphecy $documentManager;
 
     /**
      * @var EntityManagerInterface
      */
-    private $entityManager;
+    private \Prophecy\Prophecy\ObjectProphecy $entityManager;
 
     /**
      * @var PageTreeRouteUpdateHandler
      */
-    private $handler;
+    private \Sulu\Bundle\AutomationBundle\PageTree\PageTreeRouteUpdateHandler $handler;
 
     public function setUp(): void
     {
@@ -61,7 +61,7 @@ class PageTreeRouteUpdateHandlerTest extends TestCase
         );
     }
 
-    public function testConfigureOptionsResolver()
+    public function testConfigureOptionsResolver(): void
     {
         $optionsResolver = new OptionsResolver();
 
@@ -70,20 +70,20 @@ class PageTreeRouteUpdateHandlerTest extends TestCase
         $this->assertEquals(['id', 'locale'], $optionsResolver->getRequiredOptions());
     }
 
-    public function testSupports()
+    public function testSupports(): void
     {
         $this->assertTrue($this->handler->supports(PageDocument::class));
         $this->assertTrue($this->handler->supports(HomeDocument::class));
         $this->assertFalse($this->handler->supports(\stdClass::class));
     }
 
-    public function testGetConfiguration()
+    public function testGetConfiguration(): void
     {
         $result = $this->handler->getConfiguration();
         $this->assertEquals('sulu_automation.update_page_tree_route', $result->getTitle());
     }
 
-    public function testHandle()
+    public function testHandle(): void
     {
         $document = $this->prophesize(PageDocument::class);
 
@@ -99,7 +99,7 @@ class PageTreeRouteUpdateHandlerTest extends TestCase
         $this->handler->handle(['id' => '123-123-123', 'locale' => 'de']);
     }
 
-    public function testHandleUpdateException()
+    public function testHandleUpdateException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -117,7 +117,7 @@ class PageTreeRouteUpdateHandlerTest extends TestCase
         $this->handler->handle(['id' => '123-123-123', 'locale' => 'de']);
     }
 
-    public function testHandleDocumentExceptionException()
+    public function testHandleDocumentExceptionException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -135,7 +135,7 @@ class PageTreeRouteUpdateHandlerTest extends TestCase
         $this->handler->handle(['id' => '123-123-123', 'locale' => 'de']);
     }
 
-    public function testGetMaximumAttempts()
+    public function testGetMaximumAttempts(): void
     {
         $this->assertInstanceOf(RetryTaskHandlerInterface::class, $this->handler);
         $this->assertEquals(3, $this->handler->getMaximumAttempts());
