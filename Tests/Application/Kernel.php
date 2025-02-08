@@ -14,7 +14,6 @@ namespace Sulu\Bundle\AutomationBundle\Tests\Application;
 use Sulu\Bundle\AutomationBundle\SuluAutomationBundle;
 use Sulu\Bundle\TestBundle\Kernel\SuluTestKernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use Task\TaskBundle\TaskBundle;
 
 /**
  * Test kernel.
@@ -25,7 +24,6 @@ class Kernel extends SuluTestKernel
     {
         $bundles = parent::registerBundles();
 
-        $bundles[] = new TaskBundle();
         $bundles[] = new SuluAutomationBundle();
 
         return $bundles;
